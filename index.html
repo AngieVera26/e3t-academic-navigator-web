@@ -33,6 +33,29 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
 @media(max-width:1050px){.app-shell{grid-template-columns:190px minmax(0,1fr);width:calc(100% - 28px);margin:14px auto}.main{padding:21px 19px}.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-grid{grid-template-columns:minmax(0,1.3fr) minmax(220px,.8fr)}.tasks-layout{grid-template-columns:1fr}.analytics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.app-shell{display:block;width:100%;min-height:100vh;margin:0;border-radius:0}.sidebar{min-height:0;padding:12px 13px;display:block}.brand{padding:0 4px 10px}.nav-label,.nav-separator,.sidebar-spacer,.profile-mini{display:none}.nav-list{display:flex;overflow-x:auto;gap:5px;padding-bottom:2px}.nav-link{flex:0 0 auto;padding:9px 10px;font-size:10px}.nav-icon{font-size:13px}.main{padding:17px 13px 24px}.topbar{margin-bottom:15px}.mobile-brand{display:none}.connection-pill{font-size:9px}.welcome{align-items:flex-start;flex-direction:column}.welcome h1{font-size:21px}.dashboard-grid,.calendar-layout{grid-template-columns:1fr}.stats-grid{gap:8px}.stat-card{padding:11px}.stat-number{font-size:20px}.calendar-large .day-cell{height:55px;padding:6px}.analytics-grid{grid-template-columns:1fr}.page-heading{align-items:flex-start;flex-direction:column}.toolbar{width:100%}.filter-input{flex:1}.task-table th:nth-child(3),.task-table td:nth-child(3){display:none}}
 @media(max-width:390px){.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.connection-pill{display:none}.calendar-large{gap:3px}.calendar-large .day-cell{height:48px;padding:4px}.day-dots{margin-top:5px}}
+
+/* Chat integrado del asistente IA */
+.chat-access{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px;align-items:end;margin-top:12px}
+.chat-access .form-field{min-width:0}
+.chat-access-actions{display:flex;gap:8px;align-items:center}
+.chat-status{font-size:10px;color:var(--muted);margin-top:8px;min-height:16px}
+.chat-status.success{color:var(--green)}.chat-status.error{color:var(--red)}
+.chat-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin-top:14px}
+.chat-window{height:min(48vh,460px);min-height:260px;overflow:auto;border:1px solid #e9edf4;border-radius:12px;background:#f8f9fc;padding:14px;display:flex;flex-direction:column;gap:11px}
+.chat-message{display:flex;max-width:88%}.chat-message.user{align-self:flex-end;justify-content:flex-end}.chat-message.assistant,.chat-message.system{align-self:flex-start}
+.chat-bubble{padding:11px 13px;border-radius:12px;background:#fff;border:1px solid #e9edf4;color:#35405a;font-size:11px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;box-shadow:0 2px 7px rgba(26,40,80,.035)}
+.chat-message.user .chat-bubble{background:#293f8e;border-color:#293f8e;color:#fff;border-bottom-right-radius:4px}
+.chat-message.assistant .chat-bubble{border-bottom-left-radius:4px}
+.chat-message.system .chat-bubble{background:#fff8e8;border-color:#f4e4bd;color:#795d27}
+.chat-compose{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px;align-items:end;margin-top:11px}
+.chat-compose textarea{min-height:62px;max-height:150px;resize:vertical}
+.chat-compose .primary-btn{min-height:42px}
+.chat-examples{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+.chat-example{border:1px solid #e2e7f0;background:#fff;color:#53617d;border-radius:18px;padding:7px 10px;font-size:9px;font-weight:650}
+.chat-example:hover{background:#f1f4ff;border-color:#cbd6ff;color:#3159c9}
+.chat-privacy{font-size:9px;color:#8b94a7;line-height:1.55;margin-top:9px}
+@media(max-width:600px){.chat-access{grid-template-columns:1fr}.chat-access-actions{justify-content:flex-start}.chat-message{max-width:96%}.chat-compose{grid-template-columns:1fr}.chat-compose .primary-btn{justify-self:end}}
+
 </style>
 </head>
 <body>
@@ -112,12 +135,34 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
     </section>
 
     <section class="view" id="view-assistant">
-      <div class="page-heading"><div><div class="eyebrow">Planificación asistida</div><h1>Asistente IA</h1><p>Consulta tu calendario académico con el agente conectado mediante MCP.</p></div><span class="kind-tag">Integración MCP</span></div>
-      <div class="assistant-banner"><h2>Tu calendario, conectado con inteligencia artificial ✧</h2><p>El agente E3T Academic Navigator utiliza las herramientas MCP del proyecto para consultar semestres, semanas, eventos y próximos compromisos. La conexión validada actualmente se utiliza desde Copilot Chat en el entorno de GitHub Codespaces; esta página no simula una conversación ni afirma tener un chat integrado.</p></div>
-      <article class="panel"><div class="panel-title">Cómo consultar al agente</div><p class="hint" style="font-size:10px;margin:7px 0 12px;line-height:1.7">Abre el proyecto en GitHub Codespaces, inicia el servidor Python en el puerto 8000 y verifica que el servidor MCP <strong>e3t-academic-navigator</strong> esté en ejecución. Después abre Copilot Chat en modo agente y escribe una de estas consultas:</p>
-        <div class="prompt-card"><p>¿Qué actividad académica está programada para la semana 15 del semestre 2026-2?</p><button class="secondary-btn copy-prompt">Copiar</button></div>
-        <div class="prompt-card"><p>¿Cuál es la fecha límite de entrega de TG1 para el comité en el semestre 2026-2?</p><button class="secondary-btn copy-prompt">Copiar</button></div>
-        <div class="prompt-card"><p>Muéstrame los próximos compromisos académicos del semestre 2026-2 a partir de hoy.</p><button class="secondary-btn copy-prompt">Copiar</button></div>
+      <div class="page-heading"><div><div class="eyebrow">Planificación asistida</div><h1>Asistente IA</h1><p>Pregunta por semanas, fechas y compromisos de tu calendario académico.</p></div><span class="kind-tag">Copilot SDK · MCP</span></div>
+      <div class="assistant-banner"><h2>Tu asistente académico inteligente ✧</h2><p>Escribe tus preguntas directamente aquí. El asistente utiliza Copilot y las herramientas MCP de E3T para consultar la información institucional. Esta versión es una demostración privada y requiere una clave de acceso.</p></div>
+      <article class="panel">
+        <div class="panel-head"><div><div class="panel-title">Acceso de demostración</div><div class="panel-subtitle">La clave se mantiene solamente en la memoria de esta pestaña.</div></div><span class="kind-tag">Acceso protegido</span></div>
+        <div class="chat-access">
+          <div class="form-field"><label for="chatTokenInput">Clave privada de demostración</label><input class="field" id="chatTokenInput" type="password" autocomplete="off" spellcheck="false" placeholder="Pega aquí tu clave de demostración"></div>
+          <div class="chat-access-actions"><button class="primary-btn" id="activateChatBtn" type="button">Activar asistente</button><button class="secondary-btn" id="forgetChatTokenBtn" type="button">Olvidar clave</button></div>
+        </div>
+        <div class="chat-status" id="chatStatus" role="status">Introduce la clave privada para habilitar el chat. No la compartas ni la guardes en el repositorio.</div>
+        <div class="chat-privacy">La clave no se guarda en localStorage ni se incorpora al archivo HTML. Se pierde al recargar o cerrar esta pestaña. La conexión utiliza el servidor FastAPI del proyecto.</div>
+      </article>
+      <article class="panel" style="margin-top:14px">
+        <div class="panel-head"><div><div class="panel-title">Conversación con E3T Academic Navigator</div><div class="panel-subtitle">Las respuestas académicas se consultan mediante herramientas MCP.</div></div><span class="kind-tag" id="chatConversationStatus">Sin iniciar</span></div>
+        <div class="chat-layout">
+          <div class="chat-window" id="chatMessages" role="log" aria-live="polite" aria-label="Mensajes del asistente">
+            <div class="chat-message assistant"><div class="chat-bubble">¡Hola! Soy el asistente académico de E3T. Puedo ayudarte a consultar semanas, fechas límite y próximos compromisos del calendario institucional. Activa el acceso de demostración para comenzar.</div></div>
+          </div>
+          <div class="chat-examples" aria-label="Preguntas de ejemplo">
+            <button class="chat-example" type="button" data-chat-example="¿Qué actividad académica está programada para la semana 15 del semestre 2026-2?">Consultar semana 15</button>
+            <button class="chat-example" type="button" data-chat-example="¿Cuál es la fecha límite de entrega de TG1 para el comité en el semestre 2026-2?">Fecha límite de TG1</button>
+            <button class="chat-example" type="button" data-chat-example="Muéstrame los próximos compromisos académicos del semestre 2026-2.">Próximos compromisos</button>
+          </div>
+          <form class="chat-compose" id="chatForm">
+            <textarea class="field" id="chatMessageInput" maxlength="1500" rows="2" placeholder="Escribe tu pregunta académica…" aria-label="Escribe tu pregunta" disabled></textarea>
+            <button class="primary-btn" id="sendChatBtn" type="submit" disabled>Enviar ↗</button>
+          </form>
+          <div class="hint" id="chatFooterStatus">Conecta primero la API académica y activa el acceso de demostración.</div>
+        </div>
       </article>
       <article class="panel" style="margin-top:14px"><div class="panel-title">Herramientas MCP disponibles</div><div class="event-list" style="margin-top:9px"><div class="event-row"><span class="stat-icon">▤</span><div class="event-info"><div class="event-name">listar_semestres</div><div class="event-meta">Lista los semestres disponibles.</div></div></div><div class="event-row"><span class="stat-icon">▦</span><div class="event-info"><div class="event-name">consultar_semana</div><div class="event-meta">Consulta una semana específica.</div></div></div><div class="event-row"><span class="stat-icon">◷</span><div class="event-info"><div class="event-name">consultar_evento</div><div class="event-meta">Busca un evento por identificador.</div></div></div><div class="event-row"><span class="stat-icon">☷</span><div class="event-info"><div class="event-name">consultar_proximos_eventos</div><div class="event-meta">Lista próximos eventos y actividades semanales.</div></div></div><div class="event-row"><span class="stat-icon">▧</span><div class="event-info"><div class="event-name">consultar_calendario_semestre</div><div class="event-meta">Consulta fechas, semanas y eventos de un semestre.</div></div></div></div></article>
     </section>
@@ -141,7 +186,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
   const STORAGE_TASKS = 'e3t_academic_navigator_tasks_v1';
   const STORAGE_API = 'e3t_academic_navigator_api_base_v1';
   const STORAGE_SEM = 'e3t_academic_navigator_semester_v1';
-  const state = { apiBase: localStorage.getItem(STORAGE_API) || '', semester: localStorage.getItem(STORAGE_SEM) || '', semesters: [], events: [], weeks: [], upcoming: [], tasks: loadTasks(), month: new Date(new Date().getFullYear(), new Date().getMonth(), 1), selectedDate: dateKey(new Date()) };
+  const state = { apiBase: localStorage.getItem(STORAGE_API) || '', semester: localStorage.getItem(STORAGE_SEM) || '', semesters: [], events: [], weeks: [], upcoming: [], tasks: loadTasks(), month: new Date(new Date().getFullYear(), new Date().getMonth(), 1), selectedDate: dateKey(new Date()), chatToken: '', conversationId: null, chatBusy: false };
   const weekdays = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
   function loadTasks(){ try { const a=JSON.parse(localStorage.getItem(STORAGE_TASKS)||'[]'); return Array.isArray(a)?a:[]; } catch { return []; } }
   function saveTasks(){ localStorage.setItem(STORAGE_TASKS,JSON.stringify(state.tasks)); }
@@ -186,6 +231,92 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
   function renderAll(){renderDashboard();renderTasks();renderAnalytics();renderCommitments();if($('view-calendar').classList.contains('active'))renderCalendar();}
   $('refreshCommitments').addEventListener('click',async()=>{if(state.apiBase&&state.semester){await loadAcademicData();toast('Calendario actualizado');}else activeView('settings')});
   $('saveSettings').addEventListener('click',async()=>{setApiBase($('apiUrlInput').value);state.semester=$('semesterSelect').value||state.semester;localStorage.setItem(STORAGE_SEM,state.semester);await connectApi();});$('testConnection').addEventListener('click',async()=>{setApiBase($('apiUrlInput').value);try{await apiGet('/health');setConnection(true,'API conectada');$('settingsStatus').textContent='Prueba correcta: el servidor respondió en /health.';}catch(e){setConnection(false,'API no disponible');$('settingsStatus').textContent=e.message;}});
+  function setChatStatus(message,kind=''){
+    const el=$('chatStatus');
+    if(!el)return;
+    el.textContent=message;
+    el.className='chat-status'+(kind?' '+kind:'');
+  }
+  function appendChatMessage(role,message){
+    const wrap=document.createElement('div');
+    wrap.className=`chat-message ${role}`;
+    const bubble=document.createElement('div');
+    bubble.className='chat-bubble';
+    bubble.textContent=String(message??'');
+    wrap.appendChild(bubble);
+    $('chatMessages').appendChild(wrap);
+    $('chatMessages').scrollTop=$('chatMessages').scrollHeight;
+    return wrap;
+  }
+  $('activateChatBtn').addEventListener('click',()=>{
+    const token=$('chatTokenInput').value.trim();
+    if(!token){setChatStatus('Pega tu clave privada antes de activar el asistente.','error');return;}
+    state.chatToken=token;
+    $('chatTokenInput').value='';
+    $('chatMessageInput').disabled=false;
+    $('sendChatBtn').disabled=false;
+    setChatStatus('Clave cargada en esta pestaña. Se validará al enviar tu primera pregunta.','success');
+    $('chatFooterStatus').textContent='Asistente listo para recibir tu pregunta.';
+    toast('Acceso de demostración preparado');
+  });
+  $('forgetChatTokenBtn').addEventListener('click',()=>{
+    state.chatToken='';
+    state.conversationId=null;
+    $('chatTokenInput').value='';
+    $('chatMessageInput').disabled=true;
+    $('sendChatBtn').disabled=true;
+    $('chatConversationStatus').textContent='Sin iniciar';
+    setChatStatus('La clave se olvidó en esta pestaña. Puedes activarla nuevamente cuando la necesites.');
+    $('chatFooterStatus').textContent='Introduce nuevamente la clave privada para continuar.';
+    appendChatMessage('system','Se cerró el acceso local de demostración.');
+  });
+  document.querySelectorAll('[data-chat-example]').forEach(btn=>btn.addEventListener('click',()=>{
+    $('chatMessageInput').value=btn.dataset.chatExample;
+    $('chatMessageInput').focus();
+  }));
+  $('chatForm').addEventListener('submit',async(e)=>{
+    e.preventDefault();
+    const message=$('chatMessageInput').value.trim();
+    if(!message||state.chatBusy)return;
+    if(!state.apiBase){setChatStatus('Primero configura y conecta la API académica.','error');activeView('settings');return;}
+    if(!state.chatToken){setChatStatus('Activa el asistente con tu clave privada.','error');return;}
+    state.chatBusy=true;
+    $('sendChatBtn').disabled=true;
+    $('chatMessageInput').disabled=true;
+    $('chatMessageInput').value='';
+    appendChatMessage('user',message);
+    const pending=appendChatMessage('assistant','Estoy consultando tu calendario académico…');
+    $('chatConversationStatus').textContent='En curso';
+    $('chatFooterStatus').textContent='Esperando respuesta del asistente…';
+    try{
+      const payload={message};
+      if(state.conversationId)payload.conversation_id=state.conversationId;
+      const response=await fetch(state.apiBase+'/api/v1/chat',{
+        method:'POST',
+        headers:{'Accept':'application/json','Content-Type':'application/json','X-E3T-Chat-Token':state.chatToken},
+        body:JSON.stringify(payload)
+      });
+      let data;
+      try{data=await response.json();}catch{throw new Error(`La API respondió con contenido no JSON (HTTP ${response.status}).`);}
+      if(!response.ok||data?.ok===false){throw new Error(data?.error?.message||data?.detail?.message||`Error HTTP ${response.status}`);}
+      state.conversationId=data.conversation_id||state.conversationId;
+      pending.remove();
+      appendChatMessage('assistant',data.answer||'El asistente no devolvió texto.');
+      $('chatConversationStatus').textContent='Conectado';
+      $('chatFooterStatus').textContent='Respuesta recibida mediante Copilot SDK y herramientas MCP.';
+    }catch(error){
+      pending.remove();
+      appendChatMessage('system',`No fue posible completar la consulta: ${error.message}`);
+      $('chatConversationStatus').textContent='Revisar conexión';
+      $('chatFooterStatus').textContent='Comprueba que Codespaces siga activo y que la clave sea correcta.';
+      if(/401|autorización|autorizado/i.test(error.message))setChatStatus('La clave no fue aceptada. Verifica la clave de demostración.','error');
+    }finally{
+      state.chatBusy=false;
+      $('chatMessageInput').disabled=!state.chatToken;
+      $('sendChatBtn').disabled=!state.chatToken;
+      if(state.chatToken)$('chatMessageInput').focus();
+    }
+  });
   document.querySelectorAll('.copy-prompt').forEach(btn=>btn.addEventListener('click',async()=>{const text=btn.previousElementSibling.textContent;try{await navigator.clipboard.writeText(text);toast('Consulta copiada');}catch{toast('No se pudo copiar automáticamente');}}));
   $('apiUrlInput').value=state.apiBase;tickClock();setInterval(tickClock,30000);renderAll();if(state.apiBase)connectApi();else{setConnection(false,'API sin configurar');$('dashboardEvents').innerHTML='<div class="empty-state"><strong>Conecta el calendario académico</strong>En Configuración agrega la URL del puerto 8000 de tu Codespace.</div>';}
 })();
